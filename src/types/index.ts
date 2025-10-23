@@ -25,11 +25,13 @@ export interface Match {
   date: string;
   time: string;
   venue?: string;
-  league?: string;
+  league: string;
   status: 'upcoming' | 'live' | 'completed';
   homeScore?: number;
   awayScore?: number;
   week: number;
+  homeOdds: number;
+  awayOdds: number;
 }
 
 export interface Prediction {
@@ -55,6 +57,15 @@ export interface Pick {
   submittedAt: string;
 }
 
+export interface SubmittedPick {
+  matchId: string;
+  selectedTeam: 'home' | 'away';
+  betAmount: number;
+  odds: number;
+  potentialWinnings: number;
+  timestamp: string;
+}
+
 export interface Season {
   id: string;
   name: string;
@@ -75,7 +86,7 @@ export interface Arena {
   season: Season;
   image: string;
   code: string;
-  league?: string;
+  league: string;
   punishment?: string;
   creatorId?: string;
 }
@@ -93,6 +104,7 @@ export interface LeaderboardEntry extends User {
   rank: number;
   weeklyPoints: number;
   trend: 'up' | 'down' | 'same';
+  rankChange?: number; // Positive = moved up, Negative = moved down, 0 = no change
 }
 
 export interface Punishment {

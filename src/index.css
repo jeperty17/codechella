@@ -1,154 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-cyber-dark font-exo text-cyber-text;
+    @apply bg-cyber-dark text-cyber-text font-exo;
   }
 }
 
 @layer utilities {
-  .glow-neon-pink {
-    text-shadow: 0 0 10px #FF0080, 0 0 20px #FF0080, 0 0 30px #FF0080;
-  }
-  
-  .glow-neon-cyan {
-    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF;
-  }
-  
-  .glow-neon-green {
-    text-shadow: 0 0 10px #8AFF00, 0 0 20px #8AFF00, 0 0 30px #8AFF00;
-  }
-  
-  .glow-neon-yellow {
-    text-shadow: 0 0 10px #FCEE09, 0 0 20px #FCEE09, 0 0 30px #FCEE09;
-  }
-
   .box-glow-pink {
-    box-shadow: 0 0 20px rgba(255, 0, 128, 0.5), 0 0 40px rgba(255, 0, 128, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
   }
   
   .box-glow-cyan {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
   }
   
   .box-glow-green {
-    box-shadow: 0 0 20px rgba(138, 255, 0, 0.5), 0 0 40px rgba(138, 255, 0, 0.3);
-  }
-
-  .border-glow-pink {
-    border-color: #FF0080;
-    box-shadow: 0 0 10px rgba(255, 0, 128, 0.6), inset 0 0 10px rgba(255, 0, 128, 0.2);
+    box-shadow: 0 0 20px rgba(138, 255, 0, 0.3);
   }
   
-  .border-glow-cyan {
-    border-color: #00FFFF;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(0, 255, 255, 0.2);
+  .box-glow-yellow {
+    box-shadow: 0 0 20px rgba(252, 238, 9, 0.3);
+  }
+
+  .text-glow-pink {
+    text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
   }
   
-  .border-glow-green {
-    border-color: #8AFF00;
-    box-shadow: 0 0 10px rgba(138, 255, 0, 0.6), inset 0 0 10px rgba(138, 255, 0, 0.2);
+  .text-glow-cyan {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+  
+  .text-glow-green {
+    text-shadow: 0 0 10px rgba(138, 255, 0, 0.5);
   }
 
-  .glitch {
-    position: relative;
+  /* Custom slider styling */
+  .bet-slider {
+    -webkit-appearance: none;
+    appearance: none;
   }
 
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
+  .bet-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00FFFF, #8AFF00);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.2s ease;
+    margin-top: -6px; /* Center the thumb vertically on the track */
+  }
+
+  .bet-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  }
+
+  .bet-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00FFFF, #8AFF00);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.2s ease;
+  }
+
+  .bet-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  }
+
+  .bet-slider::-webkit-slider-runnable-track {
     width: 100%;
-    height: 100%;
+    height: 12px;
+    background: linear-gradient(to right, #00FFFF 0%, #00FFFF var(--slider-progress, 50%), #1B1B1B var(--slider-progress, 50%), #1B1B1B 100%);
+    border-radius: 6px;
   }
 
-  .glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 #FF0080;
-    clip: rect(24px, 550px, 90px, 0);
-    animation: glitch-anim 3s infinite linear alternate-reverse;
-  }
-
-  .glitch::after {
-    left: -2px;
-    text-shadow: -2px 0 #00FFFF;
-    clip: rect(85px, 550px, 140px, 0);
-    animation: glitch-anim 2s infinite linear alternate-reverse;
-  }
-
-  @keyframes glitch-anim {
-    0% {
-      clip: rect(61px, 9999px, 90px, 0);
-    }
-    20% {
-      clip: rect(89px, 9999px, 23px, 0);
-    }
-    40% {
-      clip: rect(43px, 9999px, 78px, 0);
-    }
-    60% {
-      clip: rect(12px, 9999px, 56px, 0);
-    }
-    80% {
-      clip: rect(77px, 9999px, 34px, 0);
-    }
-    100% {
-      clip: rect(25px, 9999px, 67px, 0);
-    }
-  }
-
-  .circuit-pattern {
-    background-image: 
-      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .holographic-border {
-    position: relative;
-    background: linear-gradient(45deg, #FF0080, #00FFFF, #8AFF00, #FCEE09);
-    background-size: 400% 400%;
-    animation: holographic 3s ease infinite;
-  }
-
-  @keyframes holographic {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .scan-line {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scan-line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+  .bet-slider::-moz-range-track {
     width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #00FFFF, transparent);
-    animation: scan 3s linear infinite;
+    height: 12px;
+    background: #1B1B1B;
+    border-radius: 6px;
   }
 
-  @keyframes scan {
-    0% {
-      top: 0;
-    }
-    100% {
-      top: 100%;
-    }
+  .bet-slider::-moz-range-progress {
+    background: #00FFFF;
+    height: 12px;
+    border-radius: 6px;
   }
 }

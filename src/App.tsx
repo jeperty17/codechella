@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import Landing from './components/Landing';
 import ArenaHub from './components/ArenaHub';
+import ArenaDetails from './components/ArenaDetails';
 import Header from './components/Header';
 import MatchCard from './components/MatchCard';
 import Leaderboard from './components/Leaderboard';
 import Punishments from './components/Punishments';
 import League from './components/League';
 import { ArrowLeft } from 'lucide-react';
-import { matches, users, punishments, currentSeason } from './data/mockData';
+import { matches, users, punishments, currentSeason, arenas } from './data/mockData';
 
-type Page = 'landing' | 'arenaHub' | 'matches';
+type Page = 'landing' | 'arenaHub' | 'arenaDetails' | 'matches';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('landing');
@@ -20,13 +21,17 @@ function App() {
   const liveMatches = matches.filter(m => m.status === 'live');
   const completedMatches = matches.filter(m => m.status === 'completed');
 
+  const selectedArena = selectedArenaId 
+    ? arenas.find(a => a.id === selectedArenaId) 
+    : null;
+
   const handleEnterArena = () => {
     setCurrentPage('arenaHub');
   };
 
   const handleSelectArena = (arenaId: string) => {
     setSelectedArenaId(arenaId);
-    setCurrentPage('matches');
+    setCurrentPage('arenaDetails');
   };
 
   const handleBackToArenas = () => {
@@ -57,6 +62,15 @@ function App() {
         onCreateArena={handleCreateArena}
         onJoinArena={handleJoinArena}
         onBackToHome={handleBackToHome}
+      />
+    );
+  }
+
+  if (currentPage === 'arenaDetails' && selectedArena) {
+    return (
+      <ArenaDetails
+        arena={selectedArena}
+        onBack={handleBackToArenas}
       />
     );
   }
